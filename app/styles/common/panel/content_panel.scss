@@ -1,0 +1,141 @@
+@import "../../browork/components/global";
+@import "../mixin";
+.content-panel{
+  background: $backgroundColor;
+  margin-top: 10px;
+  padding-bottom: 60px;
+  @include framePanelBorder();
+
+
+  .content-nav{
+    height: 60px;
+    padding: 0 15px;
+    border-bottom: 1px solid #e3e3e3;
+    span{
+      display: inline-block;
+      width:60px;
+      height:47px;
+      line-height: 47px;
+      margin-top: 10px;
+      cursor: pointer;
+      &:hover{
+        border-bottom: 3px #9aab20 solid;
+      }
+    }
+
+    .active {
+      border-bottom: 3px #9aab20 solid;
+    }
+
+
+    input{
+      float: right;
+      width: 200px;
+      height: 18px;
+      margin-right: 10px;
+      margin-top: 18px;
+    }
+    button{
+      float: right;
+      width: 100px;
+      height: 25px;
+      margin-top: 17px;
+    }
+  }
+
+  #subjectPanel , #menuPanel {
+    ul li.content-pool {
+      padding: 15px;
+      border-bottom: 1px solid #e3e3e3;
+      list-style-type: none;
+      &:hover {
+        background-color: #fafafa;
+      }
+      .pool-player-left {
+        float: left;
+      }
+
+      .pool-player-right {
+        margin-left: 60px;
+
+        dl {
+          dt {
+          }
+          dd {
+            margin: 0px;
+            padding: 0px;
+          }
+
+          dd.content-pool-title {
+            h4 {
+              margin-top: 10px;
+              margin-bottom: 0;
+
+            }
+          }
+
+          dd.content-pool-text {
+            p {
+              letter-spacing: 1px;
+              line-height: 20px;
+            }
+            a {
+              float: right;
+            }
+          }
+
+          dd.content-pool-pic {
+            clear: both;
+            ul {
+              list-style-type: none;
+              li {
+                display: inline-block;
+                margin-right: 1px;
+              }
+            }
+          }
+
+          dd.content-pool-footer {
+            margin-top: 15px;
+            span {
+              margin-right: 10px;
+            }
+
+            a {
+              float: right;
+              width: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #menuPanel {
+    ul {
+      li {
+
+      }
+    }
+  }
+
+
+  #partyPanel {
+    ul {
+      li {
+
+      }
+    }
+  }
+
+
+  #privilegePanel {
+    ul {
+      li {
+
+      }
+    }
+  }
+
+
+}

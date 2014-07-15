@@ -1,0 +1,104 @@
+<header class="content-nav" >
+    <span ng-class="{active: isVisited[0]}" ng-click="visiter(0)">话题</span>
+    <span ng-class="{active: isVisited[1]}" ng-click="visiter(1)">菜谱</span>
+    <span ng-class="{active: isVisited[2]}" ng-click="visiter(2)">饭局</span>
+    <span ng-class="{active: isVisited[3]}" ng-click="visiter(3)">优惠</span>
+    <button>搜索</button>
+    <input type="text" name="searchContent" placeholder="搜索您的内容类型" />
+</header>
+<article ng-show="isVisited[0]" id="subjectPanel" class="allPanel">
+    <ul ng-controller="SubjectCtl">
+        <li class="content-pool" ng-repeat="subject in subjects">
+            <div class="pool-player-left">
+                <img ng-src="uploads/player-photo.png" />
+            </div>
+            <div class="pool-player-right">
+                <dl>
+                    <dt>
+                        <span>{{subject.playerUserName}}</span>
+                        <img ng-src="uploads/small-icon.png" />
+                    </dt>
+                    <dd class="content-pool-title">
+                        <h4>{{subject.playerSubjectTitle}}</h4>
+                    </dd>
+                    <dd class="content-pool-text">
+                        <p>
+                            {{subject.playerSubjectContent}}...
+                        </p>
+                        <a href="###">全文</a>
+                    </dd>
+                    <dd class="content-pool-pic">
+                        <ul>
+                            <li ng-repeat="pic in subject.playerSubjectPhoto"><img ng-src="{{pic.url}}" /></li>
+                        </ul>
+                    </dd>
+                    <dd class="content-pool-footer">
+                        <span>发布: {{subject.playerPublishDateTime}}</span>
+                        <span>来自: {{subject.playerFromGroup}}</span>
+                        <a href="#">赞({{subject.playerSubjectLaudCount}})</a>
+                        <a href="#">收藏({{subject.playerSubjectCollectionCount}})</a>
+                        <a href="#">转发({{subject.playerSubjectRelayCount}})</a>
+                        <a href="#">评论({{subject.playerSubjectCommentCount}})</a>
+                    </dd>
+                </dl>
+            </div>
+        </li>
+    </ul>
+</article>
+
+<article ng-show="isVisited[1]" id="menuPanel">
+    <ul ng-controller="MenuCtl">
+        <li class="content-pool" ng-repeat="menu in Menus">
+            <div class="pool-player-left">
+                <img ng-src="uploads/player-photo.png" />
+            </div>
+            <div class="pool-player-right">
+                <dl>
+                    <dt>
+                        <span>{{menu.playerSubjectTitle}}</span>
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li>功效: </li>
+                            <li ng-repeat="func in menu.playerMenuFunction">
+                                <span>{{func}}</span>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dd>
+                        <ul>
+                            <li>营养: </li>
+                            <li ng-repeat="helfth in menu.playerMenuHelfth">
+                                <span>{{helfth}}</span>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dd class="content-pool-text">
+                        <p>
+                            {{menu.playerSubjectContent}}...
+                        </p>
+                        <a href="###">全文</a>
+                    </dd>
+                    <dd class="content-pool-pic">
+                           <img ng-src="{{menu.playerSubjectPhoto.url}}" />
+                    </dd>
+                    <dd class="content-pool-footer">
+                        <span>发布: {{menu.playerPublishDateTime}}</span>
+                        <span>来自: {{menu.playerUserName}}</span>
+                        <a href="#">赞({{menu.playerSubjectLaudCount}})</a>
+                        <a href="#">收藏({{menu.playerSubjectCollectionCount}})</a>
+                        <a href="#">转发({{menu.playerSubjectRelayCount}})</a>
+                        <a href="#">评论({{menu.playerSubjectCommentCount}})</a>
+                    </dd>
+                </dl>
+            </div>
+        </li>
+    </ul>
+</article>
+<article ng-show="isVisited[2]" id="partyPanel">
+    饭局
+</article>
+
+<article ng-show="isVisited[3]" id="privilegePanel">
+    优惠
+</article>
