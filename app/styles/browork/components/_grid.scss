@@ -9,8 +9,8 @@ $total-columns: 12 !default;
 }
 
 
-@mixin grid-row() {
-  width: 980px;
+@mixin grid-row($widthSize: 980px) {
+  width: $widthSize;
   margin-#{$default-float}: -($column-gutter/2);
   margin-#{$opposite-direction}: -($column-gutter/2);
   margin-top: 0;

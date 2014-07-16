@@ -1,7 +1,7 @@
 <header class="content-nav" >
     <span ng-class="{active: isVisited[0]}" ng-click="visiter(0)">话题</span>
-    <span ng-class="{active: isVisited[1]}" ng-click="visiter(1)">菜谱</span>
-    <span ng-class="{active: isVisited[2]}" ng-click="visiter(2)">饭局</span>
+    <span ng-class="{active: isVisited[1]}" ng-click="visiter(1)">饭局</span>
+    <span ng-class="{active: isVisited[2]}" ng-click="visiter(2)">菜谱</span>
     <span ng-class="{active: isVisited[3]}" ng-click="visiter(3)">优惠</span>
     <button>搜索</button>
     <input type="text" name="searchContent" placeholder="搜索您的内容类型" />
@@ -10,7 +10,7 @@
     <ul ng-controller="SubjectCtl">
         <li class="content-pool" ng-repeat="subject in subjects">
             <div class="pool-player-left">
-                <img ng-src="uploads/player-photo.png" />
+                <img ng-src="{{subject.playerUserPhoto}}" />
             </div>
             <div class="pool-player-right">
                 <dl>
@@ -46,59 +46,107 @@
     </ul>
 </article>
 
-<article ng-show="isVisited[1]" id="menuPanel">
-    <ul ng-controller="MenuCtl">
-        <li class="content-pool" ng-repeat="menu in Menus">
+
+
+<article ng-show="isVisited[1]" id="partyPanel" class="allPanel">
+    <ul ng-controller="PartyCtl">
+        <li class="content-pool" ng-repeat="party in Parties">
             <div class="pool-player-left">
-                <img ng-src="uploads/player-photo.png" />
+                <img ng-src="{{party.playerUserPhoto}}" />
             </div>
             <div class="pool-player-right">
                 <dl>
                     <dt>
-                        <span>{{menu.playerSubjectTitle}}</span>
+                        <span class="party-title">{{party.playerPartyTitle}} [发起]</span>
+                        <span class="party-price">费用: <strong>我买单</strong></span>
+                        <span class="party-member">已报名: <strong>111</strong></span>
                     </dt>
-                    <dd>
-                        <ul>
-                            <li>功效: </li>
-                            <li ng-repeat="func in menu.playerMenuFunction">
-                                <span>{{func}}</span>
-                            </li>
-                        </ul>
+                    <dd class="party-restaurant">
+                        <span class="party-restaurant-name">餐厅店名称</span>
+                        <span class="party-restaurant-location">餐厅地址</span>
                     </dd>
-                    <dd>
-                        <ul>
-                            <li>营养: </li>
-                            <li ng-repeat="helfth in menu.playerMenuHelfth">
-                                <span>{{helfth}}</span>
-                            </li>
-                        </ul>
+                    <dd class="party-time">
+                        <span class="start-time">时间:</span>
+                        <span class="end-time-count">报名截止还有:</span>
+                    </dd>
+                    <dd class="party-invite">
+                        <span class="party-invite-gender">邀请:</span>
+                        <span class="party-button"><button>立即报名</button></span>
                     </dd>
                     <dd class="content-pool-text">
                         <p>
-                            {{menu.playerSubjectContent}}...
+                            <span>注:</span>
+                            {{party.playerPartyComment}}...
+                            <a href="###">全文</a>
                         </p>
-                        <a href="###">全文</a>
-                    </dd>
-                    <dd class="content-pool-pic">
-                           <img ng-src="{{menu.playerSubjectPhoto.url}}" />
                     </dd>
                     <dd class="content-pool-footer">
-                        <span>发布: {{menu.playerPublishDateTime}}</span>
-                        <span>来自: {{menu.playerUserName}}</span>
-                        <a href="#">赞({{menu.playerSubjectLaudCount}})</a>
-                        <a href="#">收藏({{menu.playerSubjectCollectionCount}})</a>
-                        <a href="#">转发({{menu.playerSubjectRelayCount}})</a>
-                        <a href="#">评论({{menu.playerSubjectCommentCount}})</a>
+                        <span>发起人: {{party.playerUserName}} | 圈子名</span>
+                        <span>发  布: {{party.playerPublishDateTime}}</span>
+                        <a href="#">询问</a>
+                        <a href="#">赞({{party.playerPartyLaudCount}})</a>
+                        <a href="#">收藏({{party.playerPartyCollectionCount}})</a>
+                        <a href="#">转发({{party.playerPartyRelayCount}})</a>
+                        <a href="#">评论({{party.playerPartyCommentCount}})</a>
                     </dd>
                 </dl>
             </div>
         </li>
     </ul>
 </article>
-<article ng-show="isVisited[2]" id="partyPanel">
-    饭局
+<article ng-show="isVisited[2]" id="menuPanel" class="allPanel">
+    <ul ng-controller="MenuCtl">
+        <li class="content-pool" ng-repeat="menu in Menus">
+            <div class="pool-player-left">
+                <img ng-src="{{menu.playerUserPhoto}}" />
+            </div>
+            <div class="pool-player-right">
+                <dl>
+                    <dt>
+                        <span>{{menu.playerMenuTitle}}</span>
+                    </dt>
+                    <dd class="menu-function">
+                        <ul>
+                            <li>功效: </li>
+                            <li ng-repeat="func in menu.playerMenuFunction">
+                                <small> [  </small>
+                                <span>{{func}}</span>
+                                <small>  ] </small>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dd class="menu-helfth">
+                        <ul>
+                            <li>营养: </li>
+                            <li ng-repeat="helfth in menu.playerMenuHelfth">
+                                <small> [  </small>
+                                <span>{{helfth}}</span>
+                                <small>  ] </small>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dd class="content-pool-text">
+                        <p>
+                            {{menu.playerMenuContent}}...
+                        </p>
+                        <a href="###">全文</a>
+                    </dd>
+                    <dd class="content-pool-pic">
+                        <img ng-src="{{menu.playerMenuPhoto.url}}" />
+                    </dd>
+                    <dd class="content-pool-footer">
+                        <span>发布: {{menu.playerPublishDateTime}}</span>
+                        <span>来自: {{menu.playerUserName}}</span>
+                        <a href="#">赞({{menu.playerMenuLaudCount}})</a>
+                        <a href="#">收藏({{menu.playerMenuCollectionCount}})</a>
+                        <a href="#">转发({{menu.playerMenuRelayCount}})</a>
+                        <a href="#">评论({{menu.playerMenuCommentCount}})</a>
+                    </dd>
+                </dl>
+            </div>
+        </li>
+    </ul>
 </article>
-
 <article ng-show="isVisited[3]" id="privilegePanel">
     优惠
 </article>

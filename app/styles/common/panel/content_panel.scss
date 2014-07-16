@@ -1,5 +1,6 @@
 @import "../../browork/components/global";
 @import "../mixin";
+
 .content-panel{
   background: $backgroundColor;
   margin-top: 10px;
@@ -43,7 +44,7 @@
     }
   }
 
-  #subjectPanel , #menuPanel {
+  .allPanel, #subjectPanel {
     ul li.content-pool {
       padding: 15px;
       border-bottom: 1px solid #e3e3e3;
@@ -68,7 +69,7 @@
 
           dd.content-pool-title {
             h4 {
-              margin-top: 10px;
+              margin-top: 15px;
               margin-bottom: 0;
 
             }
@@ -114,7 +115,28 @@
   #menuPanel {
     ul {
       li {
+        .pool-player-right {
+          position: relative;
+          .menu-function, .menu-helfth {
+            margin-top: 15px;
+            ul {
+              list-style-type: none;
+              li {
+                display: inline-block;
+                height: 20px;
+                line-height: 20px;
 
+              }
+            }
+          }
+
+          .content-pool-pic {
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+
+        }
       }
     }
   }
@@ -123,6 +145,92 @@
   #partyPanel {
     ul {
       li {
+        .pool-player-right {
+          dl {
+            dt {
+              .party-title {
+                display: inline-block;
+                width: 49%;
+                text-align: left;
+              }
+              .party-price {
+                display: inline-block;
+                width: 25%;
+                text-align: left;
+              }
+
+              .party-member {
+                display: inline-block;
+                width: 25%;
+                text-align: right;
+              }
+            }
+
+            .party-restaurant, .party-time, .party-invite {
+              margin-top: 15px;
+              ul {
+                list-style-type: none;
+                li {
+                  display: inline-block;
+                  height: 20px;
+                  line-height: 20px;
+
+                }
+              }
+            }
+
+            .party-restaurant {
+              margin-top: 20px;
+              .party-restaurant-name {
+                display: inline-block;
+                width: 49%;
+                text-align: left;
+              }
+              .party-restaurant-location {
+                display: inline-block;
+                width: 50%;
+                text-align: left;
+              }
+            }
+
+            .party-time {
+              .start-time {
+                display: inline-block;
+                width: 49%;
+                text-align: left;
+              }
+              .end-time-count {
+                display: inline-block;
+                width: 50%;
+                text-align: left;
+              }
+            }
+
+            .party-invite {
+              .party-invite-gender {
+                display: inline-block;
+                width: 49%;
+                text-align: left;
+
+              }
+
+              .party-button {
+                display: inline-block;
+                width: 50%;
+                text-align: right;
+                button {
+                  width: 100px;
+                  height: 25px;
+                  line-height: 25px;
+                }
+              }
+            }
+
+            .content-pool-text {
+              margin-bottom: 20px;
+            }
+          }
+        }
 
       }
     }
