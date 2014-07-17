@@ -2,19 +2,27 @@
 angular.module('haochiquanApp')
     .controller('TabCtl', function ($scope) {
 
-        $scope.isVisited = [true, false, false, false, false, false];
+        $scope.tabVisited = [];
 
-        $scope.visiter = function($index) {
-
+        $scope.visiter = function(length, index) {
             event.preventDefault();
-
-            $scope.isVisited.forEach(function(value, key) {
-                if ($index === key) {
-                    $scope.isVisited[key] = true;
-                } else {
-                    $scope.isVisited[key] = false;
+            event.stopPropagation();
+            if (0 === $scope.tabVisited.length) {
+                for (var i = 0; i < arguments[0]; i++) {
+                    if (arguments[1] === i) {
+                        $scope.tabVisited.push(true);
+                    } else {
+                        $scope.tabVisited.push(false);
+                    }
                 }
-
-            });
+            } else {
+                for (var j = 0; j < $scope.tabVisited.length; j++) {
+                    if (j === arguments[1]) {
+                        $scope.tabVisited[j] = true;
+                    } else {
+                        $scope.tabVisited[j] = false;
+                    }
+                }
+            }
         };
     });

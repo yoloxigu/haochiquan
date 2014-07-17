@@ -11,7 +11,6 @@ angular.module('haochiquanApp')
 
             if ($dialog == 'faceDialog') {
                 //$scope.faceClicked = true;
-                console.log($scope);
                 $('#contentDrop').attr({
                     style: 'visibility: visible;top: 430px;left: 120px;'
                 });

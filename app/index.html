@@ -14,42 +14,6 @@
   <body ng-app="haochiquanApp" ng-controller="TemplateCtl">
     <div class="container">
         <header id="Header" ng-include="template.header">
-            <nav class="nav">
-                <ul class="left-nav">
-                    <li><a id="logo" href="#">好吃圈</a></li>
-                    <li><a class="nav-link" href="#">首页</a></li>
-                    <li><a class="nav-link" href="#">好吃街</a></li>
-                    <li><a class="nav-link" href="#">大饭局</a></li>
-                    <li><a class="nav-link" href="#">学做菜</a></li>
-                    <li><a class="nav-link" href="#">找圈子</a></li>
-                    <li><a class="nav-link" href="#">排行榜</a></li>
-                </ul>
-                <ul class="right-nav">
-                    <li id="navCollection">
-                        <a class="nav-link" href="#">abcdefghijklmnopqrst</a>
-                        <ul class="nav-dropdown">
-                            <li><a href="#">我的收藏</a></li>
-                            <li><a href="#">我的预订</a></li>
-                            <li><a href="#">我的账户</a></li>
-                            <li><a href="#">我的设置</a></li>
-                            <li><a href="#">模版设置</a></li>
-                            <li><a href="#">餐厅管理</a></li>
-                        </ul>
-                    </li>
-                    <li id="navNotice">
-                        <a class="nav-link" href="#">通知</a>
-                        <ul class="nav-dropdown">
-                            <li><a href="#">消息</a></li>
-                            <li><a href="#">评论</a></li>
-                            <li><a href="#">回复</a></li>
-                            <li><a href="#">私信</a></li>
-                            <li><a href="#">提到我的</a></li>
-                            <li><a href="#">赞</a></li>
-                            <li><a href="#">系统通知</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
         </header>
         <section class="middle-box" ng-view=""></section>
         <footer id="Footer"  ng-include="template.footer"></footer>
@@ -68,11 +32,13 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
 
-    <script src="scripts/common/angular-route.min.js"></script>
+
+
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/templateCtl.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/tabCtl.js"></script>
+    <script src="scripts/controllers/headerCtl.js"></script>
     <script src="scripts/controllers/publishCtl.js"></script>
     <script src="scripts/controllers/subjectCtl.js"></script>
     <script src="scripts/controllers/menuCtl.js"></script>

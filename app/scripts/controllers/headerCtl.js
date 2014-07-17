@@ -1,26 +1,27 @@
+'use strict';
 angular.module('haochiquanApp')
-    .controller('HeaderCtl', ['ngTab', function ($scope) {
-        /*
-        $scope.isVisited = [false, false, false, false, false, false];
-
-        $scope.visiter = function($index) {
-            event.preventDefault();
-            $scope.isVisited.forEach(function(value, key) {
-                if ($index == key) {
-                    $scope.isVisited[key] = true;
-                } else {
-                    $scope.isVisited[key] = false;
-                }
-
-            });
-        }
-        */
-        $scope.isVisited = null;
-
+    .controller('HeaderCtl', function ($scope) {
+        $scope.headerVisited = [];
 
         $scope.visiter = function(length, index) {
-            $scope.isVisited = $ntTab.$visiter(length, index);
+            event.preventDefault();
+            event.stopPropagation();
+            if (0 === $scope.headerVisited.length) {
+                for (var i = 0; i < arguments[0]; i++) {
+                    if (arguments[1] === i) {
+                        $scope.headerVisited.push(true);
+                    } else {
+                        $scope.headerVisited.push(false);
+                    }
+                }
+            } else {
+                for (var j = 0; j < $scope.headerVisited.length; j++) {
+                    if (j === arguments[1]) {
+                        $scope.headerVisited[j] = true;
+                    } else {
+                        $scope.headerVisited[j] = false;
+                    }
+                }
+            }
         };
-
-        console.log($scope.isVisited);
-    }]);
+    });

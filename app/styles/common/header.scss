@@ -41,9 +41,14 @@ $fontColor: #292929;
           font-size: 14px;
           font-weight: bolder;
         }
-        .navVisited {
+
+        &:hover {
           border-bottom: 3px solid #9aab20;
         }
+      }
+
+      .active {
+        border-bottom: 3px solid #9aab20;
       }
     }
 
@@ -53,13 +58,11 @@ $fontColor: #292929;
       text-align: right;
       height: 50px;
       line-height: 50px;
-
       li {
         float: right;
         display: inline-block;
         height: 50px;
         line-height: 50px;
-
 
         &:hover {
           & > .nav-dropdown {
@@ -105,8 +108,34 @@ $fontColor: #292929;
 
       #navCollection {
         position: relative;
-        width: 120px;
-        text-align: center;
+        width: 135px;
+        max-width: 135px;
+        text-align: left;
+        .nav-link {
+          height: 25px;
+          line-height: 25px;
+          margin: 0;
+          padding: 0;
+
+          .triangleDown {
+            margin-left: 10px;
+            vertical-align: middle;
+            display: inline-block;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #333333;
+          }
+
+          .triangleUp {
+            margin-left: 10px;
+            vertical-align: middle;
+            display: inline-block;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid #333333;
+          }
+        }
+
         .nav-dropdown {
           width: 100px;
           position: absolute;

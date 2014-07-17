@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('haochiquanApp', ["ngRoute"])
+  .module('haochiquanApp', ["ngRoute", "ngCookies"])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
