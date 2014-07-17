@@ -1,5 +1,6 @@
 angular.module('haochiquanApp')
-    .controller('HeaderCtl', function ($scope) {
+    .controller('HeaderCtl', ['ngTab', function ($scope) {
+        /*
         $scope.isVisited = [false, false, false, false, false, false];
 
         $scope.visiter = function($index) {
@@ -13,5 +14,13 @@ angular.module('haochiquanApp')
 
             });
         }
+        */
+        $scope.isVisited = null;
 
-    });
+
+        $scope.visiter = function(length, index) {
+            $scope.isVisited = $ntTab.$visiter(length, index);
+        };
+
+        console.log($scope.isVisited);
+    }]);
