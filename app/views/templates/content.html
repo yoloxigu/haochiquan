@@ -1,9 +1,9 @@
 <header class="content-nav">
-    <ul ng-init="visiter(4, 0)">
-        <li ng-class="{active: tabVisited[0]}"><span ng-click="visiter(4, 0)">话题</span></li>
-        <li ng-class="{active: tabVisited[1]}"><span ng-click="visiter(4, 1)">饭局</span></li>
-        <li ng-class="{active: tabVisited[2]}"><span ng-click="visiter(4, 2)">菜谱</span></li>
-        <li ng-class="{active: tabVisited[3]}"><span ng-click="visiter(4, 3)">优惠</span></li>
+    <ul ng-init="tabClick(4, 0)">
+        <li ng-class="{active: tabVisited[0]}"><span ng-click="tabClick(4, 0)">话题</span></li>
+        <li ng-class="{active: tabVisited[1]}"><span ng-click="tabClick(4, 1)">饭局</span></li>
+        <li ng-class="{active: tabVisited[2]}"><span ng-click="tabClick(4, 2)">菜谱</span></li>
+        <li ng-class="{active: tabVisited[3]}"><span ng-click="tabClick(4, 3)">优惠</span></li>
 
         <li class="search-widget">
             <input type="text" name="searchContent" placeholder="搜索您的内容类型" />
@@ -11,8 +11,8 @@
         </li>
     </ul>
 </header>
-<article ng-controller="PartyCtl" ng-show="tabVisited[0]" id="subjectPanel" class="allPanel">
-    <ul class="filter-subject">
+<article ng-show="tabVisited[0]" id="subjectPanel" class="allPanel">
+    <ul ng-controller="SubTabCtl" class="filter-widget">
         <li class="grid-left">
             <ul ng-init="visiter(4, 0)">
                 <li ng-class="{active: isVisited[0]}"><span ng-click="visiter(4, 0)">全部</span></li>
@@ -55,8 +55,8 @@
                     <dd class="content-pool-text">
                         <p>
                             {{subject.playerSubjectContent}}...
+                            <span class="expand-button">全文</span>
                         </p>
-                        <span class="expand-button">全文</span>
                     </dd>
                     <dd class="content-pool-pic">
                         <ul>
@@ -77,8 +77,8 @@
     </ul>
 </article>
 
-<article ng-controller="PartyCtl" ng-show="tabVisited[1]" id="partyPanel" class="allPanel">
-    <ul class="filter-subject">
+<article ng-show="tabVisited[1]" id="partyPanel" class="allPanel">
+    <ul ng-controller="SubTabCtl" class="filter-widget">
         <li class="grid-left">
             <ul ng-init="visiter(4, 0)">
                 <li ng-class="{active: isVisited[0]}"><span ng-click="subNav('all');visiter(4, 0);">全部(77)</span></li>
@@ -105,11 +105,12 @@
                 <i ng-class="{triangleUp: hadout[1],triangleDown: hadin[1]}"></i>
 
                 <ul ng-show="selected[1]" class="sorter-dropdown">
-                 <li><a href="#">今天</a></li>
-                <li><a href="#">明天</a></li>
-                <li><a href="#">一周后</a></li>
-                <li><a href="#">一月后</a></li>
-            </ul>
+                    <li><a href="#">全部</a></li>
+                    <li><a href="#">今天</a></li>
+                    <li><a href="#">明天</a></li>
+                    <li><a href="#">一周后</a></li>
+                    <li><a href="#">一月后</a></li>
+                </ul>
             </span>
 
 
@@ -118,6 +119,7 @@
                 <i ng-class="{triangleUp: hadout[2],triangleDown: hadin[2]}"></i>
 
                 <ul ng-show="selected[2]" class="sorter-dropdown">
+                    <li><a href="#">不限</a></li>
                     <li><a href="#">年龄</a></li>
                     <li><a href="#">职业</a></li>
                     <li><a href="#">是否抽烟</a></li>
@@ -178,8 +180,8 @@
     </ul>
 </article>
 
-<article ng-controller="PartyCtl" ng-show="tabVisited[2]" id="menuPanel" class="allPanel">
-    <ul class="filter-subject">
+<article ng-show="tabVisited[2]" id="menuPanel" class="allPanel">
+    <ul ng-controller="SubTabCtl" class="filter-widget">
         <li class="grid-left">
             <ul ng-init="visiter(4, 0)">
                 <li ng-class="{active: isVisited[0]}"><span ng-click="visiter(4, 0)">全部</span></li>
@@ -238,8 +240,9 @@
                     <dd class="content-pool-text">
                         <p>
                             {{menu.playerMenuContent}}...
+                            <span class="expand-button">全文</span>
                         </p>
-                        <span class="expand-button">全文</span>
+
                     </dd>
                     <dd class="content-pool-pic">
                         <img ng-src="{{menu.playerMenuPhoto.url}}" />
@@ -258,6 +261,111 @@
     </ul>
 </article>
 
-<article ng-controller="PartyCtl" ng-show="tabVisited[3]" id="privilegePanel" class="allPanel">
-    优惠
+<article ng-show="tabVisited[3]" id="discountPanel" class="allPanel">
+    <ul ng-controller="SubTabCtl" class="filter-widget">
+        <li class="grid-left">
+            <ul ng-init="visiter(6, 0)">
+                <li ng-class="{active: isVisited[0]}"><span ng-click="visiter(6, 0);">全部</span></li>
+                <li ng-class="{active: isVisited[1]}"><span ng-click="visiter(6, 1);">代金券</span></li>
+                <li ng-class="{active: isVisited[2]}"><span ng-click="visiter(6, 2);">折扣券</span></li>
+                <li ng-class="{active: isVisited[3]}"><span ng-click="visiter(6, 3);">试吃券</span></li>
+                <li ng-class="{active: isVisited[4]}"><span ng-click="visiter(6, 4);">赠送券</span></li>
+                <li ng-class="{active: isVisited[5]}"><span ng-click="visiter(6, 5);">抽奖券</span></li>
+            </ul>
+        </li>
+        <li ng-show="filted" class="grid-right sorter-widget">
+            <span
+                    ng-click="choose(0)">类型
+
+                <i ng-class="{triangleUp: hadout[0],triangleDown: hadin[0]}"></i>
+                <ul ng-show="selected[0]" class="sorter-dropdown">
+                    <li><a href="#">全部</a></li>
+                    <li><a href="#">中式餐厅</a></li>
+                    <li><a href="#">法式餐厅</a></li>
+                    <li><a href="#">意式餐厅</a></li>
+                    <li><a href="#">俄国餐厅</a></li>
+                    <li><a href="#">日式餐厅</a></li>
+                    <li><a href="#">韩式餐厅</a></li>
+                    <li><a href="#">其它餐厅</a></li>
+                </ul>
+            </span>
+            <small class="spliter">|</small>
+            <span ng-click="choose(1)">时间
+                <i ng-class="{triangleUp: hadout[1],triangleDown: hadin[1]}"></i>
+
+                <ul ng-show="selected[1]" class="sorter-dropdown">
+                    <li><a href="#">全部</a></li>
+                    <li><a href="#">今天内</a></li>
+                    <li><a href="#">明天内</a></li>
+                    <li><a href="#">一周内</a></li>
+                    <li><a href="#">一月内</a></li>
+                </ul>
+            </span>
+        </li>
+    </ul>
+    <ul class="loading-subject">
+        <li>有 1 个优惠发布, 查看最新优惠活动</li>
+    </ul>
+    <ul ng-controller="DiscountCtl">
+        <li class="content-pool" ng-repeat="group in Groups">
+            <div class="pool-player-left">
+                <img ng-src="{{group.playerGroupPhoto}}" />
+            </div>
+            <div class="pool-player-right">
+                <dl>
+                    <dt>
+                        <span>{{group.playerGroupName}}</span>
+                        <img ng-src="{{group.playerGroupIcon}}" />
+                        <span class="event-discount2">
+                            {{group.playerGroupEventDiscount}}
+                        </span>
+                        <smal class="event-discount3"></smal>
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li class="restaurant-area">
+                                <ul>
+                                    <li class="restaurant-event">
+                                        <span class="event-name">活动: {{group.playerGroupEventName}}</span>
+                                        <span class="discount-count" title="本次活支优惠券已使用次数">已使用: {{group.playerGroupEventJoinCount}} 次</span>
+                                    </li>
+                                    <li>
+                                        <span class="restaurant-name">{{group.playerGroupRestaurantName}}</span>
+                                        <span class="discount-type">类型: {{group.playerGroupDiscountType}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="event-date">日期: {{group.playerGroupEventDateStart}} 至 {{group.playerGroupEventDateEnd}}</span>
+                                        <span class="event-join">获取: <button>立即领取</button></span>
+                                    </li>
+                                    <li>
+                                        <span class="event-rule">活动规则: <button>查看</button></span>
+                                        <span class="event-map">地图: <button>查看</button></span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="restaurant-photo">
+                                <span><img ng-src="{{group.playerGroupRestaurantPhoto}}" style="width: 106px; height: 126px; " /></span>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dd class="content-pool-text event-detail">
+                        <p>
+                            <sapn>活动说明:</sapn>
+                            {{group.playerGroupEventDetail}}...
+                            <span class="expand-button">全文</span>
+                        </p>
+                    </dd>
+                    <dd class="content-pool-footer">
+                        <span>发布: {{group.playerPublishDateTime}}</span>
+                        <span>来自: {{group.PlayerFromGroupMemberName}}</span>
+
+                        <a href="#">询问</a>
+                        <a href="#">赞({{group.playerGroupEventLaudCount}})</a>
+                        <a href="#">转发({{group.playerGroupEventRelayCount}})</a>
+                        <a href="#">评论({{group.playerGroupEventCommentCount}})</a>
+                    </dd>
+                </dl>
+            </div>
+        </li>
+    </ul>
 </article>

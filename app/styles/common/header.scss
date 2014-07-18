@@ -37,13 +37,21 @@ $fontColor: #292929;
           color: $fontColor;
           font-size: 12px;
         }
-        #logo {
-          font-size: 14px;
-          font-weight: bolder;
-        }
 
-        &:hover {
+        &:not(#logo):hover {
           border-bottom: 3px solid #9aab20;
+        }
+      }
+
+      #logo {
+        width: 100px;
+        padding: 10px;
+        a {
+          display: block;
+          background: url(../../images/logo.png) no-repeat;
+          width: 84px;
+          height: 25px;
+
         }
       }
 
