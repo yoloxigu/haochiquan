@@ -39,42 +39,136 @@
         <li>有 1 个话题发布, 查看最新话题</li>
     </ul>
     <ul ng-controller="SubjectCtl">
-        <li class="content-pool" ng-repeat="subject in subjects">
+        <li ng-controller="CommentCtl" class="content-pool" ng-repeat="(key, value) in subjects">
             <div class="pool-player-left">
-                <img ng-src="{{subject.playerUserPhoto}}" />
+                <img ng-src="{{value.playerUserPhoto}}" />
             </div>
             <div class="pool-player-right">
                 <dl>
                     <dt>
-                        <span>{{subject.playerUserName}}</span>
+                        <span>{{value.playerUserName}}</span>
                         <img ng-src="uploads/small-icon.png" />
                     </dt>
                     <dd class="content-pool-title">
-                        <h4>{{subject.playerSubjectTitle}}</h4>
+                        <h4>{{value.playerSubjectTitle}}</h4>
                     </dd>
                     <dd class="content-pool-text">
                         <p>
-                            {{subject.playerSubjectContent}}...
+                            {{value.playerSubjectContent}}...
                             <span class="expand-button">全文</span>
                         </p>
                     </dd>
                     <dd class="content-pool-pic">
                         <ul>
-                            <li ng-repeat="pic in subject.playerSubjectPhoto"><img ng-src="{{pic.url}}" /></li>
+                            <li ng-repeat="pic in value.playerSubjectPhoto"><img ng-src="{{pic.url}}" /></li>
                         </ul>
                     </dd>
                     <dd class="content-pool-footer">
-                        <span>发布: {{subject.playerPublishDateTime}}</span>
-                        <span>来自: {{subject.playerFromGroup}}</span>
-                        <a href="#">赞({{subject.playerSubjectLaudCount}})</a>
-                        <a href="#">收藏({{subject.playerSubjectCollectionCount}})</a>
-                        <a href="#">转发({{subject.playerSubjectRelayCount}})</a>
-                        <a href="#">评论({{subject.playerSubjectCommentCount}})</a>
+                        <span>发布: {{value.playerPublishDateTime}}</span>
+                        <span>来自: {{value.playerFromGroup}}</span>
+                        <a href="javascript:void(0)">赞({{value.playerSubjectLaudCount}})</a>
+                        <a href="javascript:void(0)">收藏({{value.playerSubjectCollectionCount}})</a>
+                        <a href="javascript:void(0)">转发({{value.playerSubjectRelayCount}})</a>
+                        <a ng-click="subjectComment(key, subjects.length)" href="javascript:void(0)">评论({{value.playerSubjectCommentCount}})</a>
                     </dd>
                 </dl>
             </div>
+
+            <ul
+                ng-show="commentItems[key]"
+                ng-init="{openFaceDialog: false}"
+                class="subject-comment">
+                <li class="comment-top pool-comment-right">
+                    <ul>
+                        <li class="comment-widget">
+                            <span class="top-triangle"><em></em></span>
+                            <div class="input-comment">
+                                <textarea
+                                        ng-minLength="4"
+                                        name="commentBox"
+                                        id="commentBox"
+                                        placeholder="别惜言，说点什么!!!"
+                                        required></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <a id="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
+                                <i></i>
+                                <span>表情</span>
+                            </a>
+                            <div id="faceDialog" class="pop-dialog" ng-show="openFaceDialog">
+                                <span class="top-triangle"><em></em></span>
+                                <i class="icon-remove float-right" ng-click="openFaceDialog = !openFaceDialog"></i>
+                                <ul class="tabs">
+                                    <li class="tab-title">
+                                        <span>表情</span>
+                                    </li>
+                                </ul>
+                                <div class="dialog-content">
+                                    表情系列
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <small>|</small>
+                        </li>
+                        <li>
+                            <label>同时转发到 :</label>
+                        </li>
+                        <li>
+                            <select class="commentWithGroup" name="commentWithGroup">
+                                <option value="1">我的圈子</option>
+                                <option value="2">加入的圈子</option>
+                                <option value="3">我的好友圈子</option>
+                            </select>
+                        </li>
+                        <li class="float-right">
+                            <button
+                                    ng-class="{enabledBtn: publishContent, disabledBtn: !publishContent}"
+                                    ng-disabled="{{!publishContent}}">评伦</button>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="comment-pool" ng-repeat="comment in comments">
+                    <div class="pool-comment-left">
+                        <img ng-src="{{comment.playerUserPhoto}}" />
+                    </div>
+                    <div class="pool-comment-right">
+                        <dl>
+                            <dt>
+                                <span>{{comment.playerUserName}}</span>
+                                <img ng-src="uploads/small-icon.png" />
+                            </dt>
+                            <dd class="comment-pool-text">
+                                <p>
+                                    {{comment.playerSubjectComment}}...
+                                </p>
+                            </dd>
+                            <dd class="comment-pool-footer">
+                                <a href="javascript:void(0)">赞</a>
+                                <a href="javascript:void(0)">回复</a>
+                                <span class="top-triangle"><em></em></span>
+                                <div class="input-comment">
+                                    <textarea
+                                            ng-minLength="4"
+                                            name="commentBox"
+                                            id="commentBox"
+                                            placeholder="别惜言，说点什么!!!"
+                                            required></textarea>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="comment-count">
+                    <span>还有: {{value.playerSubjectCommentCount}} 条评论，<a href="javascript: void(0)">查看更多</a></span>
+                </li>
+            </ul>
         </li>
     </ul>
+
+
 </article>
 
 <article ng-show="tabVisited[1]" id="partyPanel" class="allPanel">
