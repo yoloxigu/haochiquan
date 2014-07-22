@@ -3,6 +3,195 @@
 @import "../mixin";
 
 
+.input-comment {
+  width: 100%;
+  border: 1px solid #e3e3e3;
+  textarea {
+    width: 100%;
+    height: 30px;
+    min-height: 30px;
+    color: #b6b6b6;
+    outline-style: none;
+    text-shadow: none;
+    resize: none;
+    padding: 7px;
+    border-color: #ffffff;
+    border-width: 0;
+    font-size: 12px;
+    line-height: 20px;
+    overflow: hidden;
+  }
+}
+
+
+.publishFace {
+  cursor: pointer;
+  i {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../../../images/icon.png) no-repeat -250px 0px;
+    margin-top: 8px;
+    position: absolute;
+    top: -5px;
+  }
+  span {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 20px;
+  }
+}
+
+.commentWithGroup {
+  @include widget-select(110px);
+}
+
+.enabledBtn {
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 50px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: bolder;
+  background-color: #79bd5f;
+  border: 1px solid #c6c6c6;
+  cursor: pointer;
+  &:hover {
+    background-color: #a4eb68;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bolder;
+  }
+}
+
+.disabledBtn {
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 50px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  font-weight: bolder;
+  background-color: #e8e8e8;
+  border: 1px solid #c6c6c6;
+  color: #808080;
+}
+
+.pop-dialog {
+  width: 500px;
+  height: auto;
+  position: absolute;
+  top: 50px;
+  left: -10px;
+  background: #ffffff;
+  padding: 15px 0;
+  z-index: 9999;
+  @include framePanelBorder();
+
+  .top-triangle {
+    display:block;
+    width:0;
+    height:0;
+    border-width:0 10px 10px;
+    border-style:solid;
+    border-color:transparent transparent #e3e3e3;
+    position:absolute;
+    top:-10px;
+    left: 20px;
+    margin-left:-10px;
+
+    em {
+      display:block;
+      width:0;
+      height:0;
+      border-width:0 10px 10px;
+      border-style:solid;
+      border-color:transparent transparent #ffffff;
+      position:absolute;
+      top:1px;
+      left:-10px;
+    }
+  }
+
+  .tabs {
+    display: block;
+    width: auto;
+    list-style-type: none;
+    height: 25px;
+    line-height: 25px;
+    margin-left:15px;
+
+    .tab-title {
+      display: inline-block;
+      float: left;
+      height: 25px;
+      line-height: 25px;
+      text-align: left;
+      width: 90px;
+      margin-left:1px;
+      border-top: 1px solid #e3e3e3;
+      border-left: 1px solid #e3e3e3;
+      border-right: 1px solid #e3e3e3;
+      border-bottom: 1px solid #ffffff;
+      bottom: -1px;
+
+      span {
+        display: block;
+        font-size: 14px;
+        width: 90px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+      }
+    }
+
+  }
+
+  .float-right {
+    @include float-right(0, 15px, 0, 0);
+  }
+}
+
+.dialog-content {
+  width: auto;
+  height: 200px;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.float-right {
+  @include float-right();
+}
+
+.top-triangle {
+  display:block;
+  width:0;
+  height:0;
+  border-width:0 10px 10px;
+  border-style:solid;
+  border-color:transparent transparent #e3e3e3;
+  position:absolute;
+  top:-25px;
+  right: 170px;
+  margin-left:-10px;
+
+  em {
+    display:block;
+    width:0;
+    height:0;
+    border-width:0 10px 10px;
+    border-style:solid;
+    border-color:transparent transparent #ffffff;
+    position:absolute;
+    top:1px;
+    left:-10px;
+  }
+}
 
 .content-panel{
   background: $backgroundColor;
@@ -267,7 +456,9 @@
       .pool-comment-right {
         margin-left: 85px;
         padding: 15px 15px 0 0;
+
         dl {
+
           dt {
           }
           dd {
@@ -287,42 +478,89 @@
             }
           }
 
+
           dd.comment-pool-footer {
-            clear: both;
-            height: 30px;
             line-height: 30px;
             display: block;
-            margin: 0;
-            span {
-              margin-right: 10px;
-            }
+            margin-top: 15px;
 
-            a {
-              float: right;
-              width: 50px;
-            }
+            ul {
+              .comment-input-left {
+                width: 80%;
+                display: inline-block;
+                ul {
+                  display: inline-block;
+                  width: 100%;
 
-            .input-comment {
-              width: 80%;
-              border: 1px solid #e3e3e3;
-              background: red;
-              display: inline-block;
-              textarea {
-                //width: 100%;
-                height: 30px;
-                min-height: 30px;
-                color: #b6b6b6;
-                outline-style: none;
-                text-shadow: none;
-                resize: none;
-                padding: 7px;
-                border-color: #ffffff;
-                border-width: 0;
-                font-size: 12px;
-                line-height: 20px;
-                overflow: hidden;
+                  li {
+                    display: inline-block;
+                    position: relative;
+                  }
+                  .comment-input-colum1 {
+                    width: 100%;
+                    .top-triangle {
+                      top: -10px;
+                      left: 20px;
+                    }
+                    div {
+                      display: inline-block;
+                      textarea {
+                        display: inline-block;
+                      }
+                    }
+                  }
+
+                  .comment-input-colum2 {
+                    height: 50px;
+                    line-height: 50px;
+                    a {
+                      i {
+                        margin-top: 22px;
+                        display: inline-block;
+
+                      }
+                    }
+                    .faceDialog {
+
+                    }
+                  }
+
+                  .comment-input-colum3 {
+                    height: 50px;
+                    line-height: 50px;
+
+                    label {
+                    }
+                    select {
+                      display: inline-block;
+                    }
+                  }
+
+                  .comment-input-colum4 {
+                    margin-top: 12px;
+                  }
+
+                }
+              }
+
+              .comment-input-right {
+                width: 19%;
+                display: inline-block;
+                float: right;
+                .comment-input-colum5 {
+                  width: 110px;
+                  display: inline-block;
+
+                  a {
+                    float: right;
+                    width: 50px;
+                  }
+                }
               }
             }
+
+
+
           }
         }
       }
@@ -333,222 +571,17 @@
         border-top: 1px solid #e3e3e3;
         height: auto;
 
-        li {
-
-        }
-
         .comment-top {
-
           ul {
             list-style-type: none;
             .comment-widget {
               width: 100%;
-
-              .top-triangle {
-                display:block;
-                width:0;
-                height:0;
-                border-width:0 10px 10px;
-                border-style:solid;
-                border-color:transparent transparent #e3e3e3;
-                position:absolute;
-                top:-25px;
-                right: 170px;
-                margin-left:-10px;
-
-                em {
-                  display:block;
-                  width:0;
-                  height:0;
-                  border-width:0 10px 10px;
-                  border-style:solid;
-                  border-color:transparent transparent #ffffff;
-                  position:absolute;
-                  top:1px;
-                  left:-10px;
-                }
-              }
             }
-
 
             li {
               margin-bottom: 15px;
               display: inline-block;
               position: relative;
-
-            }
-
-            .input-comment {
-              width: 100%;
-              border: 1px solid #e3e3e3;
-              textarea {
-                width: 100%;
-                height: 30px;
-                min-height: 30px;
-                color: #b6b6b6;
-                outline-style: none;
-                text-shadow: none;
-                resize: none;
-                padding: 7px;
-                border-color: #ffffff;
-                border-width: 0;
-                font-size: 12px;
-                line-height: 20px;
-                overflow: hidden;
-              }
-            }
-
-            a {
-              cursor: pointer;
-              i {
-                width: 16px;
-                height: 16px;
-                display: inline-block;
-                position: absolute;
-                top: -5px;
-              }
-              span {
-                display: inline-block;
-                height: 25px;
-                line-height: 25px;
-                margin-left: 20px;
-              }
-            }
-
-            #publishFace {
-              i {
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                background: url(../../../images/icon.png) no-repeat -250px 0px;
-                margin-top: 8px;
-              }
-            }
-
-            select {
-              @include widget-select(110px);
-            }
-
-            .enabledBtn {
-              padding: 0;
-              margin: 0;
-              display: block;
-              width: 50px;
-              height: 22px;
-              line-height: 22px;
-              font-size: 12px;
-              color: #ffffff;
-              font-weight: bolder;
-              background-color: #79bd5f;
-              border: 1px solid #c6c6c6;
-              cursor: pointer;
-              &:hover {
-                background-color: #a4eb68;
-                color: #ffffff;
-                font-size: 14px;
-                font-weight: bolder;
-              }
-            }
-
-            .disabledBtn {
-              padding: 0;
-              margin: 0;
-              display: block;
-              width: 50px;
-              height: 22px;
-              line-height: 22px;
-              font-size: 12px;
-              font-weight: bolder;
-              background-color: #e8e8e8;
-              border: 1px solid #c6c6c6;
-              color: #808080;
-            }
-
-            .pop-dialog {
-              width: 500px;
-              height: auto;
-              position: absolute;
-              top: 50px;
-              left: -10px;
-              background: #ffffff;
-              padding: 15px 0;
-              z-index: 999;
-              @include framePanelBorder();
-
-              .top-triangle {
-                display:block;
-                width:0;
-                height:0;
-                border-width:0 10px 10px;
-                border-style:solid;
-                border-color:transparent transparent #e3e3e3;
-                position:absolute;
-                top:-10px;
-                left: 20px;
-                margin-left:-10px;
-
-                em {
-                  display:block;
-                  width:0;
-                  height:0;
-                  border-width:0 10px 10px;
-                  border-style:solid;
-                  border-color:transparent transparent #ffffff;
-                  position:absolute;
-                  top:1px;
-                  left:-10px;
-                }
-              }
-
-              .tabs {
-                display: block;
-                width: auto;
-                list-style-type: none;
-                height: 25px;
-                line-height: 25px;
-                margin-left:15px;
-
-                .tab-title {
-                  display: inline-block;
-                  float: left;
-                  height: 25px;
-                  line-height: 25px;
-                  text-align: left;
-                  width: 90px;
-                  margin-left:1px;
-                  border-top: 1px solid #e3e3e3;
-                  border-left: 1px solid #e3e3e3;
-                  border-right: 1px solid #e3e3e3;
-                  border-bottom: 1px solid #ffffff;
-                  bottom: -1px;
-
-                  span {
-                    display: block;
-                    font-size: 14px;
-                    width: 90px;
-                    height: 25px;
-                    line-height: 25px;
-                    text-align: center;
-                  }
-                }
-
-
-              }
-
-              .float-right {
-                @include float-right(0, 15px, 0, 0);
-              }
-            }
-
-            .dialog-content {
-              width: auto;
-              height: 200px;
-              border-top: 1px solid #e3e3e3;
-              border-bottom: 1px solid #e3e3e3;
-            }
-
-            .float-right {
-              @include float-right();
             }
           }
         }

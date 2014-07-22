@@ -14,11 +14,11 @@
 <div class="publish-bottom">
     <ul ng-init="{openFaceDialog: false, openPicDialog: false}">
         <li>
-            <a id="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
+            <a class="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
                 <i></i>
                 <span>表情</span>
             </a>
-            <div id="faceDialog" class="pop-dialog" ng-show="openFaceDialog">
+            <div class="pop-dialog faceDialog" ng-show="openFaceDialog">
                 <span class="top-triangle"><em></em></span>
                 <i class="icon-remove float-right" ng-click="openFaceDialog = !openFaceDialog"></i>
                 <ul class="tabs">
@@ -32,11 +32,11 @@
             </div>
         </li>
         <li>
-            <a id="publishPic" ng-click="openPicDialog = !openPicDialog;openFaceDialog = false;">
+            <a class="publishPic" ng-click="openPicDialog = !openPicDialog;openFaceDialog = false;">
                 <i></i>
                 <span>图片</span>
             </a>
-            <div id="picDialog" class="pop-dialog" ng-show="openPicDialog">
+            <div class="pop-dialog picDialog" ng-show="openPicDialog">
                 <span class="top-triangle"><em></em></span>
                 <i class="icon-remove float-right" ng-click="openPicDialog = !openPicDialog"></i>
                 <ul class="tabs">

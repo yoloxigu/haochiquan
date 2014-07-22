@@ -84,6 +84,7 @@
                             <span class="top-triangle"><em></em></span>
                             <div class="input-comment">
                                 <textarea
+                                        ng-model="publishComment"
                                         ng-minLength="4"
                                         name="commentBox"
                                         id="commentBox"
@@ -92,11 +93,11 @@
                             </div>
                         </li>
                         <li>
-                            <a id="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
+                            <a class="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
                                 <i></i>
                                 <span>表情</span>
                             </a>
-                            <div id="faceDialog" class="pop-dialog" ng-show="openFaceDialog">
+                            <div class="pop-dialog faceDialog" ng-show="openFaceDialog">
                                 <span class="top-triangle"><em></em></span>
                                 <i class="icon-remove float-right" ng-click="openFaceDialog = !openFaceDialog"></i>
                                 <ul class="tabs">
@@ -124,8 +125,8 @@
                         </li>
                         <li class="float-right">
                             <button
-                                    ng-class="{enabledBtn: publishContent, disabledBtn: !publishContent}"
-                                    ng-disabled="{{!publishContent}}">评伦</button>
+                                    ng-class="{enabledBtn: publishComment, disabledBtn: !publishComment}"
+                                    ng-disabled="{{!publishComment}}">评伦</button>
                         </li>
                     </ul>
                 </li>
@@ -146,17 +147,64 @@
                                 </p>
                             </dd>
                             <dd class="comment-pool-footer">
-                                <a href="javascript:void(0)">赞</a>
-                                <a href="javascript:void(0)">回复</a>
-                                <span class="top-triangle"><em></em></span>
-                                <div class="input-comment">
-                                    <textarea
-                                            ng-minLength="4"
-                                            name="commentBox"
-                                            id="commentBox"
-                                            placeholder="别惜言，说点什么!!!"
-                                            required></textarea>
-                                </div>
+                                <ul>
+                                    <li class="comment-input-left">
+                                        <ul
+                                            ng-init="openFaceDialog = false; recomment = false;"
+                                            ng-show="recomment">
+                                            <li class="comment-input-colum1">
+                                                <span class="top-triangle"><em></em></span>
+                                                <div class="input-comment">
+                                                    <textarea
+                                                            ng-model="publishReComment"
+                                                            ng-minLength="4"
+                                                            name="commentBox"
+                                                            id="commentBox"
+                                                            placeholder="别惜言，说点什么!!!"
+                                                            required></textarea>
+                                                </div>
+                                            </li>
+                                            <li class="comment-input-colum2">
+                                                <a class="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
+                                                    <i></i>
+                                                    <span>表情</span>
+                                                </a>
+                                                <small>|</small>
+                                                <div class="pop-dialog" ng-show="openFaceDialog">
+                                                    <span class="top-triangle"><em></em></span>
+                                                    <i class="icon-remove float-right" ng-click="openFaceDialog = !openFaceDialog"></i>
+                                                    <ul class="tabs">
+                                                        <li class="tab-title">
+                                                            <span>表情</span>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="dialog-content">
+                                                        表情系列
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="comment-input-colum3">
+                                                <label>同时转发到 :</label>
+                                                <select class="commentWithGroup" name="commentWithGroup">
+                                                    <option value="1">我的圈子</option>
+                                                    <option value="2">加入的圈子</option>
+                                                    <option value="3">我的好友圈子</option>
+                                                </select>
+                                            </li>
+                                            <li class="float-right comment-input-colum4">
+                                                <button
+                                                        ng-class="{enabledBtn: publishReComment, disabledBtn: !publishReComment}"
+                                                        ng-disabled="{{!publishReComment}}">评伦</button>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="comment-input-right">
+                                        <div class="comment-input-colum5">
+                                            <a href="javascript:void(0)">赞</a>
+                                            <a ng-click="recomment = !recomment" href="javascript:void(0)">回复</a>
+                                        </div>
+                                    </li>
+                                </ul>
                             </dd>
                         </dl>
                     </div>
@@ -463,3 +511,9 @@
         </li>
     </ul>
 </article>
+
+<div class="reply-box">
+    <div class="reply-panel">
+
+    </div>
+</div>
