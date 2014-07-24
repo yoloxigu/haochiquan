@@ -1498,6 +1498,31 @@ textarea {
           right: 0;
           z-index: 9999; }
 
+.publish-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: rgba(3, 3, 3, 0.1);
+  width: 100%;
+  height: 100%; }
+  .publish-box .pop-dialog {
+    width: 600px;
+    height: 700px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 80px;
+    left: 20%;
+    padding: 0; }
+    .publish-box .pop-dialog i {
+      margin-top: 10px; }
+    .publish-box .pop-dialog ul {
+      margin-bottom: -2px;
+      margin-top: 10px; }
+      .publish-box .pop-dialog ul li span {
+        background-color: #ffffff;
+        margin: 0; }
+
 .middle-box {
   min-width: 650px;
   margin: 30px auto;
@@ -1807,21 +1832,6 @@ textarea {
             margin-right: 0;
             margin-bottom: 0;
             margin-left: 0; }
-    .middle-box .left-box .reply-box {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10000;
-      background-color: rgba(3, 3, 3, 0.2);
-      width: 100%;
-      height: 100%; }
-      .middle-box .left-box .reply-box .reply-panel {
-        width: 500px;
-        height: 400px;
-        background-color: #ffffff;
-        position: absolute;
-        top: 50%;
-        left: 20%; }
     .middle-box .left-box .input-comment {
       width: 100%;
       border: 1px solid #e3e3e3; }
@@ -1854,7 +1864,7 @@ textarea {
         height: 25px;
         line-height: 25px;
         margin-left: 20px; }
-    .middle-box .left-box .commentWithGroup {
+    .middle-box .left-box .publishWithGroup {
       -webkit-appearance: menulist-button;
       -webkit-box-shadow: rgba(0, 0, 0, 0.07451) 0px 1px 1px 0px inset;
       -webkit-rtl-ordering: logical;
@@ -1986,7 +1996,7 @@ textarea {
           top: 1px;
           left: -10px; }
       .middle-box .left-box .pop-dialog .tabs {
-        display: block;
+        display: inline-block;
         width: auto;
         list-style-type: none;
         height: 25px;
@@ -1997,9 +2007,7 @@ textarea {
           float: left;
           height: 25px;
           line-height: 25px;
-          text-align: left;
-          width: 90px;
-          margin-left: 1px;
+          margin-left: -1px;
           border-top: 1px solid #e3e3e3;
           border-left: 1px solid #e3e3e3;
           border-right: 1px solid #e3e3e3;
@@ -2008,10 +2016,10 @@ textarea {
           .middle-box .left-box .pop-dialog .tabs .tab-title span {
             display: block;
             font-size: 14px;
-            width: 90px;
             height: 25px;
             line-height: 25px;
-            text-align: center; }
+            text-align: center;
+            padding: 0 10px; }
       .middle-box .left-box .pop-dialog .float-right {
         float: right;
         margin-top: 0;
@@ -2029,6 +2037,14 @@ textarea {
       margin-right: 0;
       margin-bottom: 0;
       margin-left: 0; }
+      .middle-box .left-box .float-right button {
+        display: inline-block; }
+    .middle-box .left-box .publish-rang {
+      display: inline-block;
+      margin-right: 10px;
+      position: relative; }
+      .middle-box .left-box .publish-rang span {
+        cursor: pointer; }
     .middle-box .left-box .top-triangle {
       display: block;
       width: 0;
@@ -2036,10 +2052,8 @@ textarea {
       border-width: 0 10px 10px;
       border-style: solid;
       border-color: transparent transparent #e3e3e3;
-      position: absolute;
-      top: -25px;
-      right: 170px;
-      margin-left: -10px; }
+      margin-left: -10px;
+      position: absolute; }
       .middle-box .left-box .top-triangle em {
         display: block;
         width: 0;
@@ -2050,9 +2064,128 @@ textarea {
         position: absolute;
         top: 1px;
         left: -10px; }
+    .middle-box .left-box .top-triangle-comment {
+      top: -25px;
+      right: 170px; }
+    .middle-box .left-box .top-triangle-reply {
+      top: -25px;
+      right: 115px; }
+    .middle-box .left-box .triangleDown {
+      margin-left: 5px;
+      vertical-align: middle;
+      display: inline-block;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #333333; }
+    .middle-box .left-box .triangleUp {
+      margin-left: 5px;
+      vertical-align: middle;
+      display: inline-block;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid #333333; }
+    .middle-box .left-box .sorter-dropdown {
+      position: absolute;
+      top: 20px;
+      right: 0px;
+      z-index: 1000;
+      border: 1px solid #e3e3e3;
+      width: 82px; }
+      .middle-box .left-box .sorter-dropdown li {
+        display: block;
+        width: 80px;
+        margin-bottom: 0 !important; }
+        .middle-box .left-box .sorter-dropdown li a {
+          margin: 0;
+          padding: 0;
+          display: block;
+          color: black;
+          height: 30px;
+          line-height: 30px;
+          background: #ffffff; }
+          .middle-box .left-box .sorter-dropdown li a:hover {
+            background: #e3e3e3; }
+    .middle-box .left-box .subject-panel-down {
+      list-style-type: none;
+      padding: 0;
+      border-top: 1px solid #e3e3e3;
+      height: auto; }
+      .middle-box .left-box .subject-panel-down .subject-panel-down-top ul {
+        list-style-type: none; }
+        .middle-box .left-box .subject-panel-down .subject-panel-down-top ul .subject-widget {
+          width: 100%; }
+        .middle-box .left-box .subject-panel-down .subject-panel-down-top ul li {
+          margin-bottom: 15px;
+          display: inline-block;
+          position: relative; }
+      .middle-box .left-box .subject-panel-down .subject-panel-down-pool {
+        padding: 0;
+        margin: 0;
+        border-bottom-width: 0;
+        border-left-width: 0;
+        border-right-width: 0;
+        border-top: 1px solid #e3e3e3; }
+      .middle-box .left-box .subject-panel-down .subject-panel-down-count {
+        padding: 15px;
+        border-top: 1px solid #e3e3e3; }
+    .middle-box .left-box .subject-input-left {
+      width: 84%;
+      display: inline-block; }
+      .middle-box .left-box .subject-input-left ul {
+        display: inline-block;
+        width: 100%; }
+        .middle-box .left-box .subject-input-left ul li {
+          display: inline-block;
+          position: relative; }
+        .middle-box .left-box .subject-input-left ul .subject-input-colum1 {
+          width: 100%; }
+          .middle-box .left-box .subject-input-left ul .subject-input-colum1 .top-triangle {
+            top: -10px;
+            left: 20px; }
+          .middle-box .left-box .subject-input-left ul .subject-input-colum1 div {
+            display: inline-block; }
+            .middle-box .left-box .subject-input-left ul .subject-input-colum1 div textarea {
+              display: inline-block; }
+        .middle-box .left-box .subject-input-left ul .subject-input-colum2 {
+          height: 50px;
+          line-height: 50px; }
+          .middle-box .left-box .subject-input-left ul .subject-input-colum2 a i {
+            margin-top: 22px;
+            display: inline-block; }
+        .middle-box .left-box .subject-input-left ul .subject-input-colum3 {
+          height: 50px;
+          line-height: 50px; }
+          .middle-box .left-box .subject-input-left ul .subject-input-colum3 select {
+            display: inline-block; }
+        .middle-box .left-box .subject-input-left ul .subject-input-colum4 {
+          margin-top: 12px; }
+    .middle-box .left-box .subject-input-right {
+      width: 15%;
+      height: 30px;
+      display: inline-block;
+      float: right; }
+      .middle-box .left-box .subject-input-right .subject-input-colum5 {
+        width: 100px;
+        display: inline-block; }
+        .middle-box .left-box .subject-input-right .subject-input-colum5 a {
+          float: right;
+          width: 50px; }
+    .middle-box .left-box .subject-pool-text {
+      margin-top: 10px; }
+      .middle-box .left-box .subject-pool-text p {
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 20px;
+        margin: 0; }
+      .middle-box .left-box .subject-pool-text .expand-button {
+        float: right;
+        cursor: pointer; }
+    .middle-box .left-box .subject-pool-footer {
+      line-height: 30px;
+      display: block;
+      margin-top: 15px; }
     .middle-box .left-box .content-panel {
       background: white;
-      margin-top: 10px;
       padding-bottom: 60px; }
       .middle-box .left-box .content-panel .content-nav {
         height: 60px;
@@ -2117,40 +2250,6 @@ textarea {
           cursor: pointer; }
           .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget span {
             position: relative; }
-            .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget span .triangleDown {
-              margin-left: 10px;
-              vertical-align: middle;
-              display: inline-block;
-              border-left: 5px solid transparent;
-              border-right: 5px solid transparent;
-              border-top: 5px solid #333333; }
-            .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget span .triangleUp {
-              margin-left: 10px;
-              vertical-align: middle;
-              display: inline-block;
-              border-left: 5px solid transparent;
-              border-right: 5px solid transparent;
-              border-bottom: 5px solid #333333; }
-            .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget span .sorter-dropdown {
-              position: absolute;
-              top: 20px;
-              right: 0px;
-              z-index: 1000;
-              border: 1px solid #e3e3e3;
-              width: 80px; }
-              .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget span .sorter-dropdown li {
-                display: block;
-                height: 30px; }
-                .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget span .sorter-dropdown li a {
-                  margin: 0;
-                  padding: 0;
-                  display: block;
-                  color: black;
-                  height: 30px;
-                  line-height: 30px;
-                  background: #ffffff; }
-                  .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget span .sorter-dropdown li a:hover {
-                    background: #e3e3e3; }
           .middle-box .left-box .content-panel .allPanel .filter-widget .sorter-widget .spliter {
             margin: 0 10px; }
       .middle-box .left-box .content-panel .allPanel .loading-subject {
@@ -2163,7 +2262,6 @@ textarea {
           margin-top: 10px;
           cursor: pointer; }
       .middle-box .left-box .content-panel .allPanel ul li.content-pool {
-        padding: 15px;
         border: 1px solid #e3e3e3;
         list-style-type: none;
         margin-top: 10px; }
@@ -2212,90 +2310,12 @@ textarea {
         list-style-type: none; }
         .middle-box .left-box .content-panel #subjectPanel ul li.content-pool:hover {
           background-color: #fafafa; }
-        .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-left {
+        .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-subject-left {
           float: left;
           padding: 15px 0 0 15px; }
-        .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right {
+        .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-subject-right {
           margin-left: 85px;
           padding: 15px 15px 0 0; }
-          .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-text {
-            margin-top: 10px; }
-            .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-text p {
-              font-size: 12px;
-              letter-spacing: 1px;
-              line-height: 20px;
-              margin: 0; }
-            .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-text .expand-button {
-              float: right;
-              cursor: pointer; }
-          .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer {
-            line-height: 30px;
-            display: block;
-            margin-top: 15px; }
-            .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left {
-              width: 80%;
-              display: inline-block; }
-              .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul {
-                display: inline-block;
-                width: 100%; }
-                .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul li {
-                  display: inline-block;
-                  position: relative; }
-                .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum1 {
-                  width: 100%; }
-                  .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum1 .top-triangle {
-                    top: -10px;
-                    left: 20px; }
-                  .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum1 div {
-                    display: inline-block; }
-                    .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum1 div textarea {
-                      display: inline-block; }
-                .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum2 {
-                  height: 50px;
-                  line-height: 50px; }
-                  .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum2 a i {
-                    margin-top: 22px;
-                    display: inline-block; }
-                .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum3 {
-                  height: 50px;
-                  line-height: 50px; }
-                  .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum3 select {
-                    display: inline-block; }
-                .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-left ul .comment-input-colum4 {
-                  margin-top: 12px; }
-            .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-right {
-              width: 19%;
-              display: inline-block;
-              float: right; }
-              .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-right .comment-input-colum5 {
-                width: 110px;
-                display: inline-block; }
-                .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .pool-comment-right dl dd.comment-pool-footer ul .comment-input-right .comment-input-colum5 a {
-                  float: right;
-                  width: 50px; }
-        .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .subject-comment {
-          list-style-type: none;
-          padding: 0;
-          border-top: 1px solid #e3e3e3;
-          height: auto; }
-          .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .subject-comment .comment-top ul {
-            list-style-type: none; }
-            .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .subject-comment .comment-top ul .comment-widget {
-              width: 100%; }
-            .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .subject-comment .comment-top ul li {
-              margin-bottom: 15px;
-              display: inline-block;
-              position: relative; }
-          .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .subject-comment .comment-pool {
-            padding: 0;
-            margin: 0;
-            border-bottom-width: 0;
-            border-left-width: 0;
-            border-right-width: 0;
-            border-top: 1px solid #e3e3e3; }
-          .middle-box .left-box .content-panel #subjectPanel ul li.content-pool .subject-comment .comment-count {
-            padding: 15px;
-            border-top: 1px solid #e3e3e3; }
       .middle-box .left-box .content-panel #partyPanel ul li .pool-player-right dl dt .party-title {
         display: inline-block;
         width: 49%;
@@ -2374,8 +2394,8 @@ textarea {
               line-height: 20px; }
         .middle-box .left-box .content-panel #menuPanel ul li .pool-player-right .content-pool-pic {
           position: absolute;
-          top: 0;
-          right: 0; }
+          top: 15px;
+          right: 15px; }
       .middle-box .left-box .content-panel #discountPanel ul li {
         position: relative; }
         .middle-box .left-box .content-panel #discountPanel ul li .pool-player-right dl dt {
@@ -2455,6 +2475,73 @@ textarea {
             font-size: 12px;
             width: 100%;
             display: inline-block; }
+    .middle-box .left-box .reply-box {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10000;
+      background-color: rgba(3, 3, 3, 0.2);
+      width: 100%;
+      height: 100%; }
+      .middle-box .left-box .reply-box .reply-panel {
+        width: 600px;
+        height: 700px;
+        background-color: #ffffff;
+        position: absolute;
+        top: 40%;
+        left: 20%;
+        padding: 0; }
+        .middle-box .left-box .reply-box .reply-panel i {
+          margin-top: 10px; }
+        .middle-box .left-box .reply-box .reply-panel h2 {
+          background-color: #efefef;
+          height: 35px;
+          line-height: 35px;
+          text-align: center;
+          margin: 0; }
+        .middle-box .left-box .reply-box .reply-panel h1 {
+          float: left;
+          height: 25px;
+          line-height: 25px;
+          font-weight: normal;
+          display: inline-block;
+          margin-left: 15px;
+          margin-top: 10px; }
+        .middle-box .left-box .reply-box .reply-panel ul {
+          margin-bottom: -2px;
+          margin-top: 10px; }
+          .middle-box .left-box .reply-box .reply-panel ul li span {
+            background-color: #ffffff;
+            margin: 0; }
+        .middle-box .left-box .reply-box .reply-panel .dialog-content {
+          height: auto;
+          padding: 15px; }
+          .middle-box .left-box .reply-box .reply-panel .dialog-content .ref-subject p {
+            padding: 10px;
+            background-color: #efefef;
+            font-size: 12px;
+            letter-spacing: 1px;
+            line-height: 20px;
+            margin: 0; }
+          .middle-box .left-box .reply-box .reply-panel .dialog-content .ref-subject .expand-button {
+            float: right;
+            cursor: pointer; }
+          .middle-box .left-box .reply-box .reply-panel .dialog-content .input-reply {
+            width: 100%;
+            border: 1px solid #e3e3e3; }
+            .middle-box .left-box .reply-box .reply-panel .dialog-content .input-reply textarea {
+              width: 100%;
+              height: 80px;
+              min-height: 80px;
+              color: #b6b6b6;
+              outline-style: none;
+              text-shadow: none;
+              resize: none;
+              padding: 7px;
+              border-color: #ffffff;
+              border-width: 0;
+              font-size: 12px;
+              line-height: 20px; }
   .middle-box .right-box {
     float: right;
     padding-left: convert-to-rem(30, 16px)/2;

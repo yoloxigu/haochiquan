@@ -23,7 +23,6 @@
   }
 }
 
-
 .publishFace {
   cursor: pointer;
   i {
@@ -43,7 +42,7 @@
   }
 }
 
-.commentWithGroup {
+.publishWithGroup {
   @include widget-select(110px);
 }
 
@@ -119,7 +118,7 @@
   }
 
   .tabs {
-    display: block;
+    display: inline-block;
     width: auto;
     list-style-type: none;
     height: 25px;
@@ -131,22 +130,25 @@
       float: left;
       height: 25px;
       line-height: 25px;
-      text-align: left;
-      width: 90px;
-      margin-left:1px;
+      //text-align: left;
+      //width: 90px;
+
+      margin-left:-1px;
       border-top: 1px solid #e3e3e3;
       border-left: 1px solid #e3e3e3;
       border-right: 1px solid #e3e3e3;
       border-bottom: 1px solid #ffffff;
       bottom: -1px;
+      //background-color: greenyellow;
 
       span {
         display: block;
         font-size: 14px;
-        width: 90px;
+        //width: 90px;
         height: 25px;
         line-height: 25px;
         text-align: center;
+        padding: 0 10px;
       }
     }
 
@@ -166,6 +168,18 @@
 
 .float-right {
   @include float-right();
+  button {
+    display: inline-block;
+  }
+}
+
+.publish-rang {
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  span {
+    cursor: pointer;
+  }
 }
 
 .top-triangle {
@@ -175,10 +189,8 @@
   border-width:0 10px 10px;
   border-style:solid;
   border-color:transparent transparent #e3e3e3;
-  position:absolute;
-  top:-25px;
-  right: 170px;
   margin-left:-10px;
+  position:absolute;
 
   em {
     display:block;
@@ -193,9 +205,194 @@
   }
 }
 
+.top-triangle-comment {
+  top:-25px;
+  right: 170px;
+}
+
+.top-triangle-reply {
+  top:-25px;
+  right: 115px;
+}
+
+.triangleDown {
+  margin-left: 5px;
+  vertical-align: middle;
+  display: inline-block;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333333;
+}
+
+.triangleUp {
+  margin-left: 5px;
+  vertical-align: middle;
+  display: inline-block;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #333333;
+}
+
+.sorter-dropdown {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  z-index: 1000;
+  border: 1px solid #e3e3e3;
+  width: 82px;
+  li {
+    display: block;
+    width: 80px;
+    margin-bottom: 0 !important;
+    a {
+      margin: 0;
+      padding: 0;
+      display: block;
+      color: black;
+      height: 30px;
+      line-height: 30px;
+      background: #ffffff;
+      &:hover {
+        background: #e3e3e3;
+      }
+    }
+  }
+}
+
+.subject-panel-down {
+  list-style-type: none;
+  padding: 0;
+  border-top: 1px solid #e3e3e3;
+  height: auto;
+
+  .subject-panel-down-top {
+    ul {
+      list-style-type: none;
+      .subject-widget {
+        width: 100%;
+      }
+
+      li {
+        margin-bottom: 15px;
+        display: inline-block;
+        position: relative;
+      }
+    }
+  }
+
+  .subject-panel-down-pool {
+    padding: 0;
+    margin: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top: 1px solid #e3e3e3;
+  }
+
+  .subject-panel-down-count {
+    padding: 15px;
+    border-top: 1px solid #e3e3e3;
+  }
+}
+
+.subject-input-left {
+  width: 84%;
+  display: inline-block;
+  ul {
+    display: inline-block;
+    width: 100%;
+
+    li {
+      display: inline-block;
+      position: relative;
+    }
+    .subject-input-colum1 {
+      width: 100%;
+      .top-triangle {
+        top: -10px;
+        left: 20px;
+      }
+      div {
+        display: inline-block;
+        textarea {
+          display: inline-block;
+        }
+      }
+    }
+
+    .subject-input-colum2 {
+      height: 50px;
+      line-height: 50px;
+      a {
+        i {
+          margin-top: 22px;
+          display: inline-block;
+
+        }
+      }
+      .faceDialog {
+
+      }
+    }
+
+    .subject-input-colum3 {
+      height: 50px;
+      line-height: 50px;
+
+      label {
+      }
+      select {
+        display: inline-block;
+      }
+    }
+
+    .subject-input-colum4 {
+      margin-top: 12px;
+    }
+
+  }
+}
+
+.subject-input-right {
+  width: 15%;
+  height: 30px;
+  display: inline-block;
+  float: right;
+  .subject-input-colum5 {
+    width: 100px;
+    display: inline-block;
+
+    a {
+      float: right;
+      width: 50px;
+    }
+  }
+}
+
+.subject-pool-text {
+  margin-top: 10px;
+  p {
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    margin: 0;
+  }
+  .expand-button {
+    float: right;
+    cursor: pointer;
+  }
+}
+
+.subject-pool-footer {
+  line-height: 30px;
+  display: block;
+  margin-top: 15px;
+
+}
+
 .content-panel{
   background: $backgroundColor;
-  margin-top: 10px;
+  //margin-top: 10px;
   padding-bottom: 60px;
   //@include framePanelBorder();
 
@@ -248,6 +445,7 @@
       border-bottom: 1px solid #e3e3e3;
       border-left: 1px solid #e3e3e3;
       border-right: 1px solid #e3e3e3;
+
       li {
         display: inline-block;
       }
@@ -290,63 +488,15 @@
       }
 
       .sorter-widget {
-
         cursor: pointer;
         span {
           position: relative;
-          .triangleDown {
-            margin-left: 10px;
-            vertical-align: middle;
-            display: inline-block;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid #333333;
-          }
-
-          .triangleUp {
-            margin-left: 10px;
-            vertical-align: middle;
-            display: inline-block;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-bottom: 5px solid #333333;
-          }
-
-          .sorter-dropdown {
-            position: absolute;
-            top: 20px;
-            right: 0px;
-            z-index: 1000;
-            border: 1px solid #e3e3e3;
-            width: 80px;
-            li {
-
-              display: block;
-              height: 30px;
-              a {
-                margin: 0;
-                padding: 0;
-                display: block;
-                color: black;
-                height: 30px;
-                line-height: 30px;
-                background: #ffffff;
-                &:hover {
-                  background: #e3e3e3;
-                }
-              }
-            }
-          }
-
         }
 
         .spliter {
           margin: 0 10px;
         }
-
-
       }
-
     }
 
     .loading-subject {
@@ -362,8 +512,6 @@
     }
 
     ul li.content-pool {
-      padding: 15px;
-
       border: 1px solid #e3e3e3;
       list-style-type: none;
       margin-top: 10px;
@@ -448,157 +596,14 @@
         background-color: #fafafa;
       }
 
-      .pool-comment-left {
+      .pool-subject-left {
         float: left;
         padding: 15px 0 0 15px;
       }
 
-      .pool-comment-right {
+      .pool-subject-right {
         margin-left: 85px;
         padding: 15px 15px 0 0;
-
-        dl {
-
-          dt {
-          }
-          dd {
-          }
-
-          dd.comment-pool-text {
-            margin-top: 10px;
-            p {
-              font-size: 12px;
-              letter-spacing: 1px;
-              line-height: 20px;
-              margin: 0;
-            }
-            .expand-button {
-              float: right;
-              cursor: pointer;
-            }
-          }
-
-
-          dd.comment-pool-footer {
-            line-height: 30px;
-            display: block;
-            margin-top: 15px;
-
-            ul {
-              .comment-input-left {
-                width: 80%;
-                display: inline-block;
-                ul {
-                  display: inline-block;
-                  width: 100%;
-
-                  li {
-                    display: inline-block;
-                    position: relative;
-                  }
-                  .comment-input-colum1 {
-                    width: 100%;
-                    .top-triangle {
-                      top: -10px;
-                      left: 20px;
-                    }
-                    div {
-                      display: inline-block;
-                      textarea {
-                        display: inline-block;
-                      }
-                    }
-                  }
-
-                  .comment-input-colum2 {
-                    height: 50px;
-                    line-height: 50px;
-                    a {
-                      i {
-                        margin-top: 22px;
-                        display: inline-block;
-
-                      }
-                    }
-                    .faceDialog {
-
-                    }
-                  }
-
-                  .comment-input-colum3 {
-                    height: 50px;
-                    line-height: 50px;
-
-                    label {
-                    }
-                    select {
-                      display: inline-block;
-                    }
-                  }
-
-                  .comment-input-colum4 {
-                    margin-top: 12px;
-                  }
-
-                }
-              }
-
-              .comment-input-right {
-                width: 19%;
-                display: inline-block;
-                float: right;
-                .comment-input-colum5 {
-                  width: 110px;
-                  display: inline-block;
-
-                  a {
-                    float: right;
-                    width: 50px;
-                  }
-                }
-              }
-            }
-
-
-
-          }
-        }
-      }
-
-      .subject-comment {
-        list-style-type: none;
-        padding: 0;
-        border-top: 1px solid #e3e3e3;
-        height: auto;
-
-        .comment-top {
-          ul {
-            list-style-type: none;
-            .comment-widget {
-              width: 100%;
-            }
-
-            li {
-              margin-bottom: 15px;
-              display: inline-block;
-              position: relative;
-            }
-          }
-        }
-
-        .comment-pool {
-          padding: 0;
-          margin: 0;
-          border-bottom-width: 0;
-          border-left-width: 0;
-          border-right-width: 0;
-          border-top: 1px solid #e3e3e3;
-        }
-
-        .comment-count {
-          padding: 15px;
-          border-top: 1px solid #e3e3e3;
-        }
       }
     }
   }
@@ -741,8 +746,8 @@
 
           .content-pool-pic {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 15px;
+            right: 15px;
           }
 
         }
@@ -874,4 +879,97 @@
     }
   }
 
+}
+
+.reply-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: rgba(3, 3 , 3, 0.2);
+  width: 100%;
+  height: 100%;
+  .reply-panel {
+    width: 600px;
+    height: 700px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    padding: 0;
+
+    i {
+      margin-top: 10px;
+    }
+
+    h2 {
+      background-color: #efefef;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      margin: 0;
+    }
+    h1 {
+      float: left;
+      height: 25px;
+      line-height: 25px;
+      font-weight: normal;
+      display: inline-block;
+      margin-left: 15px;
+      margin-top: 10px;
+
+    }
+
+    ul {
+      margin-bottom: -2px;
+      margin-top: 10px;
+      li {
+        span {
+          background-color: #ffffff;
+          margin: 0;
+        }
+      }
+    }
+
+    .dialog-content {
+      height: auto;
+      padding: 15px;
+      .ref-subject {
+
+
+        p {
+          padding: 10px;
+          background-color: #efefef;
+          font-size: 12px;
+          letter-spacing: 1px;
+          line-height: 20px;
+          margin: 0;
+        }
+        .expand-button {
+          float: right;
+          cursor: pointer;
+        }
+      }
+
+      .input-reply {
+        width: 100%;
+        border: 1px solid #e3e3e3;
+        textarea {
+          width: 100%;
+          height: 80px;
+          min-height: 80px;
+          color: #b6b6b6;
+          outline-style: none;
+          text-shadow: none;
+          resize: none;
+          padding: 7px;
+          border-color: #ffffff;
+          border-width: 0;
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+
+  }
 }

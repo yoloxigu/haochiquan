@@ -25,6 +25,12 @@ angular.module('haochiquanApp')
                 }
             }
         };
+
+        $scope.replyDialog = false;
+
+        $scope.openReplyDialog = function() {
+            $scope.replyDialog = !$scope.replyDialog;
+        };
     })
     .controller('SubTabCtl', function($scope) {
         // subTab area

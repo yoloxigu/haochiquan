@@ -39,7 +39,7 @@
         <li>有 1 个话题发布, 查看最新话题</li>
     </ul>
     <ul ng-controller="SubjectCtl">
-        <li ng-controller="CommentCtl" class="content-pool" ng-repeat="(key, value) in subjects">
+        <li class="content-pool" ng-repeat="(key, value) in subjects">
             <div class="pool-player-left">
                 <img ng-src="{{value.playerUserPhoto}}" />
             </div>
@@ -66,10 +66,20 @@
                     <dd class="content-pool-footer">
                         <span>发布: {{value.playerPublishDateTime}}</span>
                         <span>来自: {{value.playerFromGroup}}</span>
-                        <a href="javascript:void(0)">赞({{value.playerSubjectLaudCount}})</a>
-                        <a href="javascript:void(0)">收藏({{value.playerSubjectCollectionCount}})</a>
-                        <a href="javascript:void(0)">转发({{value.playerSubjectRelayCount}})</a>
-                        <a ng-click="subjectComment(key, subjects.length)" href="javascript:void(0)">评论({{value.playerSubjectCommentCount}})</a>
+                        <a
+                            ng-click="value.playerSubjectLaudCount = changeLaud(value.playerSubjectLaudCount)"
+                            href="javascript:void(0)">赞({{value.playerSubjectLaudCount}})</a>
+                        <a
+                            ng-click="value.playerSubjectCollection = changeCollection(value.playerSubjectCollection)"
+                            href="javascript:void(0)">
+                            <ng-pluralize count="value.playerSubjectCollection"
+                                          when="{
+                                          '0': '收藏',
+                                          '1': '取消收藏'}">
+                            </ng-pluralize>
+                        </a>
+                        <a ng-click="changeSubjectPanel(key, subjects.length, 'reply')" href="javascript:void(0)">转发({{value.playerSubjectReplyCount}})</a>
+                        <a ng-click="changeSubjectPanel(key, subjects.length, 'comment')" href="javascript:void(0)">评论({{value.playerSubjectCommentCount}})</a>
                     </dd>
                 </dl>
             </div>
@@ -77,11 +87,11 @@
             <ul
                 ng-show="commentItems[key]"
                 ng-init="{openFaceDialog: false}"
-                class="subject-comment">
-                <li class="comment-top pool-comment-right">
+                class="subject-panel-down">
+                <li class="subject-panel-down-top pool-subject-right">
                     <ul>
-                        <li class="comment-widget">
-                            <span class="top-triangle"><em></em></span>
+                        <li class="subject-widget">
+                            <span class="top-triangle top-triangle-comment"><em></em></span>
                             <div class="input-comment">
                                 <textarea
                                         ng-model="publishComment"
@@ -117,10 +127,11 @@
                             <label>同时转发到 :</label>
                         </li>
                         <li>
-                            <select class="commentWithGroup" name="commentWithGroup">
+                            <select class="publishWithGroup" name="publishWithGroup">
+                                <option value="1">全部圈子</option>
                                 <option value="1">我的圈子</option>
                                 <option value="2">加入的圈子</option>
-                                <option value="3">我的好友圈子</option>
+                                <option value="3">我的好友圈</option>
                             </select>
                         </li>
                         <li class="float-right">
@@ -131,28 +142,28 @@
                     </ul>
                 </li>
 
-                <li class="comment-pool" ng-repeat="comment in comments">
-                    <div class="pool-comment-left">
+                <li class="subject-panel-down-pool" ng-repeat="comment in comments">
+                    <div class="pool-subject-left">
                         <img ng-src="{{comment.playerUserPhoto}}" />
                     </div>
-                    <div class="pool-comment-right">
+                    <div class="pool-subject-right">
                         <dl>
                             <dt>
                                 <span>{{comment.playerUserName}}</span>
                                 <img ng-src="uploads/small-icon.png" />
                             </dt>
-                            <dd class="comment-pool-text">
+                            <dd class="subject-pool-text">
                                 <p>
                                     {{comment.playerSubjectComment}}...
                                 </p>
                             </dd>
-                            <dd class="comment-pool-footer">
+                            <dd class="subject-pool-footer">
                                 <ul>
-                                    <li class="comment-input-left">
+                                    <li class="subject-input-left">
                                         <ul
                                             ng-init="openFaceDialog = false; recomment = false;"
                                             ng-show="recomment">
-                                            <li class="comment-input-colum1">
+                                            <li class="subject-input-colum1">
                                                 <span class="top-triangle"><em></em></span>
                                                 <div class="input-comment">
                                                     <textarea
@@ -164,7 +175,7 @@
                                                             required></textarea>
                                                 </div>
                                             </li>
-                                            <li class="comment-input-colum2">
+                                            <li class="subject-input-colum2">
                                                 <a class="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
                                                     <i></i>
                                                     <span>表情</span>
@@ -183,23 +194,24 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="comment-input-colum3">
+                                            <li class="subject-input-colum3">
                                                 <label>同时转发到 :</label>
-                                                <select class="commentWithGroup" name="commentWithGroup">
+                                                <select class="publishWithGroup" name="publishWithGroup">
+                                                    <option value="1">全部圈子</option>
                                                     <option value="1">我的圈子</option>
                                                     <option value="2">加入的圈子</option>
-                                                    <option value="3">我的好友圈子</option>
+                                                    <option value="3">我的好友圈</option>
                                                 </select>
                                             </li>
-                                            <li class="float-right comment-input-colum4">
+                                            <li class="float-right subject-input-colum4">
                                                 <button
                                                         ng-class="{enabledBtn: publishReComment, disabledBtn: !publishReComment}"
                                                         ng-disabled="{{!publishReComment}}">评伦</button>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="comment-input-right">
-                                        <div class="comment-input-colum5">
+                                    <li class="subject-input-right">
+                                        <div class="subject-input-colum5">
                                             <a href="javascript:void(0)">赞</a>
                                             <a ng-click="recomment = !recomment" href="javascript:void(0)">回复</a>
                                         </div>
@@ -209,8 +221,109 @@
                         </dl>
                     </div>
                 </li>
-                <li class="comment-count">
+                <li class="subject-panel-down-count">
                     <span>还有: {{value.playerSubjectCommentCount}} 条评论，<a href="javascript: void(0)">查看更多</a></span>
+                </li>
+            </ul>
+
+            <ul
+                ng-show="replyItems[key]"
+                ng-init="{openFaceDialog: false}"
+                class="subject-panel-down">
+                <li class="subject-panel-down-top pool-subject-right">
+                    <ul>
+                        <li class="subject-widget">
+                            <span class="top-triangle top-triangle-reply"><em></em></span>
+                            <div class="input-comment">
+                                <textarea
+                                        ng-model="publishComment"
+                                        ng-minLength="4"
+                                        name="commentBox"
+                                        id="commentBox"
+                                        placeholder="转发传播力量大!!!"
+                                        required></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
+                                <i></i>
+                                <span>表情</span>
+                            </a>
+                            <div class="pop-dialog faceDialog" ng-show="openFaceDialog">
+                                <span class="top-triangle"><em></em></span>
+                                <i class="icon-remove float-right" ng-click="openFaceDialog = !openFaceDialog"></i>
+                                <ul class="tabs">
+                                    <li class="tab-title">
+                                        <span>表情</span>
+                                    </li>
+                                </ul>
+                                <div class="dialog-content">
+                                    表情系列
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <small>|</small>
+                        </li>
+                        <li>
+                            <label>同时评论给 :</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" value=""/>
+                            {{value.playerUserName}}
+                        </li>
+                        <li class="float-right">
+                            <div class="publish-rang" ng-init="openPublishRang = false">
+                                <span ng-click="openPublishRang = !openPublishRang">全部圈子
+                                    <i ng-class="{triangleUp: openPublishRang,triangleDown: !openPublishRang}"></i>
+                                    <ul ng-show="openPublishRang" class="sorter-dropdown">
+                                        <li><a href="javascript:void(0)">全部圈子</a></li>
+                                        <li><a href="javascript:void(0)">我的圈子</a></li>
+                                        <li><a href="javascript:void(0)">加入的圈子</a></li>
+                                        <li><a href="javascript:void(0)">我的好友圈</a></li>
+                                    </ul>
+                                </span>
+                            </div>
+                            <button
+                                    ng-class="{enabledBtn: publishComment, disabledBtn: !publishComment}"
+                                    ng-disabled="{{!publishComment}}">转发</button>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="subject-panel-down-pool" ng-repeat="reply in replys">
+                    <div class="pool-subject-left">
+                        <img ng-src="{{reply.playerUserPhoto}}" />
+                    </div>
+                    <div class="pool-subject-right">
+                        <dl>
+                            <dt>
+                                <span>{{reply.playerUserName}}</span>
+                                <img ng-src="uploads/small-icon.png" />
+                            </dt>
+                            <dd class="subject-pool-text">
+                                <p>
+                                    {{reply.playerSubjectReply}}...
+                                </p>
+                            </dd>
+                            <dd class="subject-pool-footer">
+                                <ul>
+                                    <li class="subject-input-left">
+
+                                    </li>
+                                    <li class="subject-input-right">
+                                        <div class="subject-input-colum5">
+                                            <a href="javascript:void(0)">赞</a>
+                                            <a ng-click="recomment = !recomment" href="javascript:void(0)">转发</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                <li class="subject-panel-down-count">
+                    <span>还有: {{value.playerSubjectReplyCount}} 条转发，<a href="javascript: void(0)">查看更多</a></span>
                 </li>
             </ul>
         </li>
@@ -274,7 +387,11 @@
         <li>有 1 个饭局发布, 查看最新饭局</li>
     </ul>
     <ul ng-controller="PartyCtl">
-        <li ng-class="{inviteMale: gender,inviteFmale: !gender}" ng-init="gender = party.playerPartyInviteMale"  class="content-pool" ng-repeat="party in Parties">
+        <li
+            ng-class="{inviteMale: gender,inviteFmale: !gender}"
+            ng-init="gender = party.playerPartyInviteMale"
+            class="content-pool"
+            ng-repeat="party in Parties">
             <div class="pool-player-left">
                 <img ng-src="{{party.playerUserPhoto}}" />
             </div>
@@ -512,8 +629,76 @@
     </ul>
 </article>
 
-<div class="reply-box">
-    <div class="reply-panel">
 
+<!--div class="reply-box" ng-show="replyDialog">
+    <div class="reply-panel pop-dialog">
+        <i class="icon-remove float-right" ng-click="openReplyDialog()"></i>
+
+        <h2>转发话题</h2>
+        <h1>转发到:</h1>
+
+        <ul class="tabs">
+            <li class="tab-title">
+                <span>我的圈子</span>
+            </li>
+            <li class="tab-title">
+                <span>加入的圈子</span>
+            </li>
+            <li class="tab-title">
+                <span>我的好友圈</span>
+            </li>
+        </ul>
+        <div class="dialog-content">
+            <div class="ref-subject">
+                <p>
+                    @UserName: 话题原文内容话题原文内容话题原文内容话题原文内容话题原文内容话题原文内容话题原文内容...
+                    <span class="expand-button">全文</span>
+                </p>
+            </div>
+            <div class="input-reply">
+                <textarea
+                        ng-model="publishReComment"
+                        ng-minLength="4"
+                        name="commentBox"
+                        id="commentBox"
+                        placeholder="转发传播力量大!!!"
+                        required></textarea>
+            </div>
+            <div>
+
+                    <a class="publishFace" ng-click="openFaceDialog = !openFaceDialog;openPicDialog = false;">
+                        <i></i>
+                        <span>表情</span>
+                    </a>
+                    <small>|</small>
+                    <div class="pop-dialog" ng-show="openFaceDialog">
+                        <span class="top-triangle"><em></em></span>
+                        <i class="icon-remove float-right" ng-click="openFaceDialog = !openFaceDialog"></i>
+                        <ul class="tabs">
+                            <li class="tab-title">
+                                <span>表情</span>
+                            </li>
+                        </ul>
+                        <div class="dialog-content">
+                            表情系列
+                        </div>
+                    </div>
+
+
+                    <label>同时转发到 :</label>
+                    <select class="publishWithGroup" name="publishWithGroup">
+                        <option value="1">全部圈子</option>
+                        <option value="1">我的圈子</option>
+                        <option value="2">加入的圈子</option>
+                        <option value="3">我的好友圈</option>
+                    </select>
+
+
+                    <button
+                            ng-class="{enabledBtn: publishReComment, disabledBtn: !publishReComment}"
+                            ng-disabled="{{!publishReComment}}">评伦</button>
+
+            </div>
+        </div>
     </div>
-</div>
+</div-->
