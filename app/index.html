@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="styles/index.css">
   </head>
   <body ng-app="haochiquanApp" ng-controller="TemplateCtl">
-    <div class="container">
+    <div class="container" ng-controller="PanelsCtl">
         <header id="Header" ng-include="template.header">
         </header>
-        <section class="middle-box" ng-view=""></section>
+        <section class="middle-box" ng-view="" ng-controole="MainCtrl"></section>
         <footer id="Footer"  ng-include="template.footer"></footer>
+        <div ng-show="publishDialog" ng-include="template.publish_subject_dialog" class="publish-box"></div>
     </div>
 
 
@@ -36,12 +37,14 @@
 
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/templateCtl.js"></script>
+    <script src="scripts/controllers/panelsCtl.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/tabCtl.js"></script>
     <script src="scripts/controllers/headerCtl.js"></script>
     <script src="scripts/controllers/publishCtl.js"></script>
     <script src="scripts/controllers/subjectCtl.js"></script>
-    <script src="scripts/controllers/menuCtl.js"></script>
     <script src="scripts/controllers/PartyCtl.js"></script>
+    <script src="scripts/controllers/menuCtl.js"></script>
+    <script src="scripts/controllers/discountCtl.js"></script>
 </body>
 </html>

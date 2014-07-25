@@ -3,28 +3,8 @@
     <span class="change-ad-content">换一换</span>
 </div>
 <div class="ad-photo">
-    <span>
-        <img src="images/ad_photo.jpg">
-        <span>餐厅名称</span>
-    </span>
-    <span>
-        <img src="images/ad_photo.jpg">
-        <span>餐厅名称</span>
-    </span>
-    <span>
-        <img src="images/ad_photo.jpg">
-        <span>餐厅名称</span>
-    </span>
-    <span>
-        <img src="images/ad_photo.jpg">
-        <span>餐厅名称</span>
-    </span>
-    <span>
-        <img src="images/ad_photo.jpg">
-        <span>餐厅名称</span>
-    </span>
-    <span>
-        <img src="images/ad_photo.jpg">
-        <span>餐厅名称</span>
+    <span ng-repeat="ad in ads">
+        <img ng-src="{{ad.restaurantPhoto}}" style="width: 162px; height: 121px;">
+        <span>{{ad.restaurantName}}</span>
     </span>
 </div>
